@@ -1,9 +1,8 @@
-CRON_RESULT=$(/etc/init.d/crond status)
-STATUS=echo $CRON_RESULT| grep pid
-if [ -z "$STATUS" ]; then
-        echo "CROND CRITICAL- $CRON_RESULT"
+STATUS=$(systemctl is-active crond)
+if [ "inactive" = "$STATUS" ]; then
+        echo "CROND CRITICAL- $STATUS"
         exit 2
 else
-        echo "CROND OK- $CRON_RESULT"
+        echo "CROND OK- $STATUS"
         exit 0
 fi
