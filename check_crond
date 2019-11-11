@@ -1,0 +1,9 @@
+CRON_RESULT=$(/etc/init.d/crond status)
+STATUS=echo $CRON_RESULT| grep pid
+if [ -z "$STATUS" ]; then
+        echo "CROND CRITICAL- $CRON_RESULT"
+        exit 2
+else
+        echo "CROND OK- $CRON_RESULT"
+        exit 0
+fi
