@@ -1,8 +1,8 @@
 STATUS=$(systemctl is-active crond)
-if [ "inactive" = "$STATUS" ]; then
-        echo "CROND CRITICAL- $STATUS"
+if [ "active" = "$STATUS" ]; then
+        echo "CROND OK - $STATUS"
         exit 2
 else
-        echo "CROND OK- $STATUS"
+        echo "CROND CRITICAL - $STATUS"
         exit 0
 fi
